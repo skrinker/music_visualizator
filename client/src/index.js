@@ -1,33 +1,29 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import Visualizator from './Visualizator';
+import InsertLink from './InsertLink';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-async function fetchAudio() {
-  const res = await fetch('http://localhost:1337/?id=CfbCLwNlGwU');
-  return res.body.getReader().read();
-} 
-
-var isFetched = false;
 
 function App(props) {
-  const [music, setMusic] = useState({ link: '' });
-  if (!isFetched) {
-    fetchAudio().then(res => {
-      var blob = new Blob([res.value], { type: 'audio/mp3' });
-      var url = window.URL.createObjectURL(blob);
-      setMusic(url);
-      isFetched = true;
-    })
-  }
-  if (music.link != '') {
-    window.audio = new Audio();
-    window.audio.src = music.link;
-    window.audio.autoplay = true;
-    window.audio.play();
-    return (<p>Compot</p>);
-  } 
-  return (<div>Hello</div>);
+  const [link, setLink] = useState('');
+  return (
+  <Router>
+    <Switch>
+      <Route path="/visualizator">
+        <Visualizator link={link}/>
+      </Route>
+      <Route path="/">
+        <InsertLink setLink={setLink} />
+      </Route>
+    </Switch>
+  </Router>);
 }
-
 ReactDOM.render(
   <App />,
   document.getElementById('root')
