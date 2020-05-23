@@ -6,17 +6,20 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useLocation
 } from "react-router-dom";
 
 
 function App(props) {
   const [link, setLink] = useState('');
+  const [playing, setPlaying] = useState(false);
+  const [audio, setAudio] = useState(null);
   return (
   <Router>
     <Switch>
       <Route path="/visualizator">
-        <Visualizator link={link}/>
+        <Visualizator link={link} setPlaying={setPlaying} playing={playing} audio={audio} setAudio={setAudio} />
       </Route>
       <Route path="/">
         <InsertLink setLink={setLink} />
