@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Visualizator from './Visualizator';
 import InsertLink from './InsertLink';
+import './index.css'
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,16 +11,25 @@ import {
   useLocation
 } from "react-router-dom";
 
+const ctx = new AudioContext();
 
 function App(props) {
   const [link, setLink] = useState('');
-  const [playing, setPlaying] = useState(false);
-  const [audio, setAudio] = useState(null);
+  const [audio, setAudio] = useState({
+    context: new AudioContext(),
+    src: null,
+    isPlaying: false,
+    isStopped: false,
+    isComplete: false,
+    isSkipped: false,
+    playSound: (new AudioContext()).createBufferSource(),
+    analyser: (new AudioContext()).createAnalyser()
+  });
   return (
   <Router>
     <Switch>
       <Route path="/visualizator">
-        <Visualizator link={link} setPlaying={setPlaying} playing={playing} audio={audio} setAudio={setAudio} />
+        <Visualizator link={link} audio={audio} setAudio={setAudio} />
       </Route>
       <Route path="/">
         <InsertLink setLink={setLink} />

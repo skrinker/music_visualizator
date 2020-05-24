@@ -1,0 +1,22 @@
+body {
+  height: 100vh;
+  background-color: #010917;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+ul li {
+  list-style: none;
+  width: 30px;
+  height: 30px;
+  background-color: #F43E3E;
+  margin: 0 10px;
+  border-radius: 50%;
+}

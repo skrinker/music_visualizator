@@ -1,22 +1,4 @@
 body {
-  height: 100vh;
-  background-color: bisque;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-ul {
-  margin: 0;
   padding: 0;
-  display: flex;
-}
-
-ul li {
-  list-style: none;
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  margin: 0 10px;
-  border-radius: 50%;
+  margin: 0;
 }
